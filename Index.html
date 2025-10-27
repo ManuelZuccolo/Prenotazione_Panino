@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Ordina il tuo Panino</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #faf3e0;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 60%;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h1 { text-align: center; color: #d45b00; }
+    label { display: block; margin-top: 10px; }
+    input, select {
+      margin-top: 5px;
+      padding: 5px;
+      width: 100%;
+    }
+    .checkbox-group, .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #d45b00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    img { width: 100%; border-radius: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ordina il tuo Panino</h1>
+    <img src="panino.jpg" alt="Panino gustoso">
+
+    <form action="fidelity.php" method="POST" onsubmit="return controllaForm()">
+      <label>Nome e Cognome:</label>
+      <input type="text" name="nome" id="nome" required>
+
+      <label>Data e ora di prenotazione:</label>
+      <input type="datetime-local" name="data" id="data" required>
+
+      <label>Tipo di panino:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="tipo" value="Classico" required> Classico</label>
+        <label><input type="radio" name="tipo" value="Vegetariano"> Vegetariano</label>
+        <label><input type="radio" name="tipo" value="Piccante"> Piccante</label>
+      </div>
+
+      <label>Ingredienti extra:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="extra[]" value="Formaggio"> Formaggio</label>
+        <label><input type="checkbox" name="extra[]" value="Bacon"> Bacon</label>
+        <l
