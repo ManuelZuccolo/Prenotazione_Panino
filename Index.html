@@ -2,11 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>BurgerCraft 🍔 - Crea il tuo panino</title>
+    <title>BurgerCraft 🍔</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>🍔 BurgerCraft – Crea il tuo panino!</h1>
+    <h1>🍔 BurgerCraft - You choose the taste!</h1>
 
     <form action="fidelity.html" method="POST" id="burgerForm">
         <!-- Dati utente -->
@@ -26,15 +26,15 @@
         <fieldset>
             <legend>Scegli il tipo di pane</legend>
             <label>
-                <img src="img/pane_normale.jpg" alt="Pane normale">
+                <img src="img/pane_normale.png" alt="Pane normale">
                 <input type="radio" name="pane" value="normale" data-prezzo="2" required> Pane normale
             </label>
             <label>
-                <img src="img/pane_integrale.jpg" alt="Pane integrale">
+                <img src="img/pane_integrale.png" alt="Pane integrale">
                 <input type="radio" name="pane" value="integrale" data-prezzo="2.5"> Pane integrale
             </label>
             <label>
-                <img src="img/pane_rustico.jpg" alt="Pane rustico">
+                <img src="img/pane_rustico.png" alt="Pane rustico">
                 <input type="radio" name="pane" value="rustico" data-prezzo="3"> Pane rustico
             </label>
         </fieldset>
@@ -43,15 +43,15 @@
         <fieldset>
             <legend>Scegli la carne</legend>
             <label>
-                <img src="img/manzo.jpg" alt="Manzo">
+                <img src="img/manzo.png" alt="Manzo">
                 <input type="radio" name="carne" value="manzo" data-prezzo="4" required> Manzo
             </label>
             <label>
-                <img src="img/pollo.jpg" alt="Pollo">
+                <img src="img/pollo.png" alt="Pollo">
                 <input type="radio" name="carne" value="pollo" data-prezzo="3.5"> Pollo
             </label>
             <label>
-                <img src="img/vegano.jpg" alt="Vegano">
+                <img src="img/vegano.png" alt="Vegano">
                 <input type="radio" name="carne" value="vegano" data-prezzo="3"> Vegano
             </label>
         </fieldset>
@@ -59,22 +59,22 @@
         <!-- Toppings -->
         <fieldset>
             <legend>Scegli i tuoi toppings (max 4 inclusi)</legend>
-            <label><img src="img/pomodoro.jpg" alt="Pomodoro"><input type="checkbox" name="toppings[]" value="Pomodoro" data-prezzo="0.5"> Pomodoro</label>
-            <label><img src="img/insalata.jpg" alt="Insalata"><input type="checkbox" name="toppings[]" value="Insalata" data-prezzo="0.5"> Insalata</label>
-            <label><img src="img/formaggio.jpg" alt="Formaggio"><input type="checkbox" name="toppings[]" value="Formaggio" data-prezzo="0.5"> Formaggio</label>
-            <label><img src="img/bacon.jpg" alt="Bacon"><input type="checkbox" name="toppings[]" value="Bacon" data-prezzo="0.5"> Bacon</label>
-            <label><img src="img/cipolla.jpg" alt="Cipolla"><input type="checkbox" name="toppings[]" value="Cipolla" data-prezzo="0.5"> Cipolla</label>
-            <label><img src="img/uovo.jpg" alt="Uovo"><input type="checkbox" name="toppings[]" value="Uovo" data-prezzo="0.5"> Uovo</label>
+            <label><img src="img/pomodoro.png" alt="Pomodoro"><input type="checkbox" name="toppings[]" value="Pomodoro" data-prezzo="0.5"> Pomodoro</label>
+            <label><img src="img/insalata.png" alt="Insalata"><input type="checkbox" name="toppings[]" value="Insalata" data-prezzo="0.5"> Insalata</label>
+            <label><img src="img/formaggio.png" alt="Formaggio"><input type="checkbox" name="toppings[]" value="Formaggio" data-prezzo="0.5"> Formaggio</label>
+            <label><img src="img/bacon.png" alt="Bacon"><input type="checkbox" name="toppings[]" value="Bacon" data-prezzo="0.5"> Bacon</label>
+            <label><img src="img/cipolla.png" alt="Cipolla"><input type="checkbox" name="toppings[]" value="Cipolla" data-prezzo="0.5"> Cipolla</label>
+            <label><img src="img/uovo.png" alt="Uovo"><input type="checkbox" name="toppings[]" value="Uovo" data-prezzo="0.5"> Uovo</label>
         </fieldset>
 
         <!-- Salse -->
         <fieldset>
             <legend>Scegli le salse (max 3 incluse)</legend>
-            <label><img src="img/ketchup.jpg" alt="Ketchup"><input type="checkbox" name="salse[]" value="Ketchup" data-prezzo="0.5"> Ketchup</label>
+            <label><img src="img/ketchup.png" alt="Ketchup"><input type="checkbox" name="salse[]" value="Ketchup" data-prezzo="0.5"> Ketchup</label>
             <label><img src="img/maionese.jpg" alt="Maionese"><input type="checkbox" name="salse[]" value="Maionese" data-prezzo="0.5"> Maionese</label>
-            <label><img src="img/senape.jpg" alt="Senape"><input type="checkbox" name="salse[]" value="Senape" data-prezzo="0.5"> Senape</label>
-            <label><img src="img/bbq.jpg" alt="BBQ"><input type="checkbox" name="salse[]" value="BBQ" data-prezzo="0.5"> BBQ</label>
-            <label><img src="img/burger.jpg" alt="Burger"><input type="checkbox" name="salse[]" value="Burger" data-prezzo="0.5"> Burger</label>
+            <label><img src="img/senape.png" alt="Senape"><input type="checkbox" name="salse[]" value="Senape" data-prezzo="0.5"> Senape</label>
+            <label><img src="img/bbq.png" alt="BBQ"><input type="checkbox" name="salse[]" value="BBQ" data-prezzo="0.5"> BBQ</label>
+            <label><img src="img/burger.png" alt="Burger"><input type="checkbox" name="salse[]" value="Burger" data-prezzo="0.5"> Burger</label>
         </fieldset>
 
         <!-- Bevanda -->
@@ -99,31 +99,32 @@
     </form>
 
     <footer>
-        Creato da Manuz 🍔 – Progetto di Informatica
+        Creato da Manuz, per qualsiasi problema ESITATE a contattarmi
     </footer>
 
     <script>
         const form = document.getElementById('burgerForm');
         const totaleSpan = document.getElementById('totale');
 
-        function calcolaPrezzo() {
+        function calcolaPrezzo() 
+        {
             let totale = 0;
 
-            // pane + carne
+            //pane + carne
             const radioGroups = form.querySelectorAll('input[type="radio"]:checked');
             radioGroups.forEach(el => totale += parseFloat(el.dataset.prezzo));
 
-            // toppings
+            //toppings gratis fino a 4, +1€ per extra
             const toppings = form.querySelectorAll('input[name="toppings[]"]:checked');
+            toppings.forEach(el => totale += 0);
             let extraToppings = Math.max(0, toppings.length - 4);
-            toppings.forEach(el => totale += parseFloat(el.dataset.prezzo));
-            totale += extraToppings * 1; // +1€ per extra topping
+            totale += extraToppings * 1;
 
-            // salse
+            //salse stessa cosa ma 3
             const salse = form.querySelectorAll('input[name="salse[]"]:checked');
+            salse.forEach(el => totale += 0);
             let extraSalse = Math.max(0, salse.length - 3);
-            salse.forEach(el => totale += parseFloat(el.dataset.prezzo));
-            totale += extraSalse * 1; // +1€ per extra salsa
+            totale += extraSalse * 1;
 
             // bevanda
             const bevanda = document.querySelector('#bevanda option:checked');
@@ -131,6 +132,7 @@
 
             totaleSpan.textContent = totale.toFixed(2);
         }
+
 
         form.addEventListener('change', calcolaPrezzo);
         window.addEventListener('DOMContentLoaded', calcolaPrezzo);
