@@ -1,0 +1,178 @@
+/* ------------------------------
+    Reset e font base
+------------------------------ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    color: #222;
+}
+
+/* ------------------------------
+    Header
+------------------------------ */
+h1 {
+    text-align: center;
+    background-color: #ffb347;
+    color: #222;
+    padding: 20px;
+    border-bottom: 3px solid #e69500;
+}
+
+/* ------------------------------
+    Form principale
+------------------------------ */
+form {
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+/* Fieldset e legend */
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: #333;
+    padding: 0 10px;
+}
+
+/* Label e immagini */
+label {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+label img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: transform 0.2s;
+}
+
+label:hover img {
+    transform: scale(1.05);
+}
+
+/* Inputs e select */
+input[type="text"],
+input[type="datetime-local"],
+select {
+    width: 80%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-top: 5px;
+}
+
+/* Pulsanti */
+button {
+    display: block;
+    width: 100%;
+    background-color: #ffb347;
+    color: #222;
+    font-size: 1.2em;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #ffa500;
+}
+
+/* ------------------------------
+    Box prezzo totale
+------------------------------ */
+.price-box {
+    text-align: right;
+    font-size: 1.2em;
+    background: #eee;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* ------------------------------
+    Messaggi di esito
+------------------------------ */
+.esito {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* ------------------------------
+    Footer
+------------------------------ */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+}
+
+/* ------------------------------
+    Tabelle (per conferma.php)
+------------------------------ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #ffb347;
+    color: #222;
+}
+
+/* ------------------------------
+    Responsive
+------------------------------ */
+@media screen and (max-width: 600px) {
+    label {
+        display: block;
+        margin: 10px 0;
+    }
+
+    input[type="text"], input[type="datetime-local"], select {
+        width: 100%;
+    }
+}
