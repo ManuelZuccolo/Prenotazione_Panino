@@ -49,7 +49,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
     </footer>
 
     <script>
-        // JS per verificare il codice fidelity in tempo reale (opzionale)
+        //JS per verificare il codice fidelity in tempo reale (opzionale)
         const form = document.getElementById('fidelityForm');
         const esitoDiv = document.getElementById('esito');
         const totaleSpan = document.getElementById('totale');
@@ -73,12 +73,12 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
 
                         if (tipo === "panino_gratis") {
                             totale = 0;
-                            messaggio = "🍔 Panino gratis! Offerta speciale BurgerCraft!";
+                            messaggio = "Panino gratis! Offerta speciale BurgerCraft!";
                         } else if (tipo === "bevanda_bonus") {
-                            messaggio = `🎁 Hai ricevuto una ${codici[codice].oggetto} in omaggio!`;
+                            messaggio = `Hai ricevuto una ${codici[codice].oggetto} in omaggio!`;
                         } else if (tipo === "penalità") {
                             totale += 50;
-                            messaggio = "💀 NONMANGIAREQUI... visto che devo pulire io +50€!";
+                            messaggio = "NONMANGIAREQUI... visto che devo pulire io +50€!";
                         } else if (tipo === "sconto_percentuale") {
                             totale -= totale * (sconto / 100);
                             messaggio = `Sconto del ${sconto}% applicato!`;
