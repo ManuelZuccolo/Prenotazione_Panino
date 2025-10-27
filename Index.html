@@ -66,4 +66,35 @@
       <div class="checkbox-group">
         <label><input type="checkbox" name="extra[]" value="Formaggio"> Formaggio</label>
         <label><input type="checkbox" name="extra[]" value="Bacon"> Bacon</label>
-        <l
+        <label><input type="checkbox" name="extra[]" value="Uovo"> Uovo</label>
+      </div>
+
+      <label>Bevanda:</label>
+      <select name="bevanda" required>
+        <option value="">-- Seleziona --</option>
+        <option>Acqua</option>
+        <option>Coca Cola</option>
+        <option>Birra</option>
+      </select>
+
+      <button type="submit">Continua →</button>
+    </form>
+  </div>
+
+  <script>
+    function controllaForm() {
+      let nome = document.getElementById('nome').value;
+      if (nome.length < 3) {
+        alert("Il nome deve avere almeno 3 caratteri!");
+        return false;
+      }
+      let data = new Date(document.getElementById('data').value);
+      if (data < new Date()) {
+        alert("La data deve essere nel futuro!");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
