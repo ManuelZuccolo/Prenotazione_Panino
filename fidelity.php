@@ -1,4 +1,5 @@
 <?php
+session_star()
 // Recupera i dati inviati da index.html
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datiOrdine = $_POST; // contiene pane, carne, toppings, salse, bevanda e totale
@@ -17,7 +18,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>BurgerCraft 🍔 - Codice Fidelity</title>
+    <title>BurgerCraft 🍔</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,7 +31,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
 
         <div style="text-align:center; margin-top:20px;">
             <label for="codice">Inserisci il tuo codice Fidelity (opzionale):</label><br>
-            <input type="text" id="codice" name="codice" placeholder="Es. SUPERMANUZBURGER">
+            <input type="text" id="codice" name="codice">
         </div>
 
         <div class="esito" id="esito"></div>
@@ -45,11 +46,11 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
     </form>
 
     <footer>
-        Creato da Manuz 🍔 – Progetto di Informatica
+        Creato da Manuz, per qualsiasi problema ESITATE a contattarmi
     </footer>
 
     <script>
-        //JS per verificare il codice fidelity in tempo reale (opzionale)
+      //JS per verificare il codice fidelity in tempo reale (opzionale)
         const form = document.getElementById('fidelityForm');
         const esitoDiv = document.getElementById('esito');
         const totaleSpan = document.getElementById('totale');
@@ -60,7 +61,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
             let totale = parseFloat(totaleFinaleInput.value);
 
             if (codice) {
-                e.preventDefault(); // aspetta verifica codice
+                e.preventDefault(); //aspetta verifica codice
 
                 try {
                     const response = await fetch('data/fidelity.json');
@@ -101,7 +102,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
                     esitoDiv.style.color = "red";
                 }
             }
-        });
+        });  
     </script>
 </body>
 </html>
