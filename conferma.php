@@ -1,6 +1,23 @@
 <?php
 session_start();
 
+// Controlla se l'utente vuole terminare la sessione
+if (isset($_GET['termina'])) {
+    // Cancella il cookie delle preferenze
+    if (isset($_COOKIE['preferenzeBurger'])) {
+        setcookie('preferenzeBurger', '', time() - 3600, '/'); // scadenza passata
+    }
+
+    // Distruggi sessione
+    $_SESSION = [];
+    session_destroy();
+
+    // Reindirizza a index
+    header("Location: index.html");
+    exit;
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['datiOrdine'])) {
     header("Location: index.html");
     exit;
@@ -65,6 +82,13 @@ if ($codice && isset($codici[$codice])) {
         <tr><th>Data Ordine</th><td><?= date("d/m/Y H:i:s") ?></td></tr>
         <tr><th>Codice Fidelity</th><td><?= htmlspecialchars($codice ?: "Nessuno") ?></td></tr>
     </table>
+
+    <div style="text-align:center; margin-top:20px;">
+        <form method="POST" action="conferma.php?termina=1">
+            <button type="submit">DISTRUZIONE</button>
+        </form>
+    </div>
+
 
     <footer>
         Grazie per aver ordinato da BurgerCraft! 🍔
