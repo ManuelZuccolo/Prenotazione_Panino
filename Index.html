@@ -106,32 +106,27 @@
         const form = document.getElementById('burgerForm');
         const totaleSpan = document.getElementById('totale');
 
-        function calcolaPrezzo() 
-        {
+        function calcolaPrezzo() {
             let totale = 0;
 
-            //pane + carne
             const radioGroups = form.querySelectorAll('input[type="radio"]:checked');
             radioGroups.forEach(el => totale += parseFloat(el.dataset.prezzo));
 
-            //toppings gratis fino a 4, +1€ per extra
             const toppings = form.querySelectorAll('input[name="toppings[]"]:checked');
-            toppings.forEach(el => totale += 0);
             let extraToppings = Math.max(0, toppings.length - 4);
             totale += extraToppings * 1;
 
-            //salse stessa cosa ma 3
             const salse = form.querySelectorAll('input[name="salse[]"]:checked');
-            salse.forEach(el => totale += 0);
             let extraSalse = Math.max(0, salse.length - 3);
             totale += extraSalse * 1;
 
-            // bevanda
             const bevanda = document.querySelector('#bevanda option:checked');
             totale += parseFloat(bevanda.dataset.prezzo);
 
             totaleSpan.textContent = totale.toFixed(2);
+            document.getElementById('totaleFinaleHidden').value = totale.toFixed(2);
         }
+
 
 
         form.addEventListener('change', calcolaPrezzo);

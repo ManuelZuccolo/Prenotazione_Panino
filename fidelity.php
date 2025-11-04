@@ -1,5 +1,5 @@
 <?php
-session_star();
+session_start();
 // Recupera i dati inviati da index.html
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datiOrdine = $_POST; // contiene pane, carne, toppings, salse, bevanda e totale
@@ -64,7 +64,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval($datiOrdine['totaleFinal
                 e.preventDefault(); //aspetta verifica codice
 
                 try {
-                    const response = await fetch('data/fidelity.json');
+                    const response = await fetch('data-fidelity.json');
                     const codici = await response.json();
 
                     if (codici[codice]) {
