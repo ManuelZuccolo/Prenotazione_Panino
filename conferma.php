@@ -22,7 +22,6 @@ if ($codice === "INEEDPOWER") {
     $bonusMessaggio = "Hai ricevuto una Monster in omaggio! ⚡";
     $bonusOggetto = "Monster";
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,51 +30,109 @@ if ($codice === "INEEDPOWER") {
     <meta charset="UTF-8">
     <title>Conferma Ordine - BurgerCraft 🍔</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f2e7;
+            color: #333;
+            text-align: center;
+        }
+        h1 { margin-top: 20px; }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #ffcc66;
+        }
+        td.price {
+            text-align: right;
+        }
+        .bonus {
+            color: green;
+            font-weight: bold;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>✅ Ordine Confermato!</h1>
 
-    <div class="ordine-box">
-        <h2>Dati Cliente</h2>
-        <p><strong>Nome:</strong> <?= htmlspecialchars($datiOrdine['nome']) ?></p>
-        <p><strong>Data e Ora prenotazione:</strong> <?= htmlspecialchars($datiOrdine['dataPrenotazione']) ?></p>
+    <table>
+        <tr>
+            <th colspan="2">Dati Cliente</th>
+        </tr>
+        <tr>
+            <td>Nome</td>
+            <td><?= htmlspecialchars($datiOrdine['nome']) ?></td>
+        </tr>
+        <tr>
+            <td>Data e Ora Prenotazione</td>
+            <td><?= htmlspecialchars($datiOrdine['dataPrenotazione']) ?></td>
+        </tr>
 
-        <h2>Scelte Hamburger</h2>
-        <p><strong>Pane:</strong> <?= htmlspecialchars($datiOrdine['pane']) ?></p>
-        <p><strong>Carne:</strong> <?= htmlspecialchars($datiOrdine['carne']) ?></p>
-
-        <p><strong>Toppings:</strong>
-            <?php
-            if (!empty($datiOrdine['toppings'])) {
-                echo htmlspecialchars(implode(', ', $datiOrdine['toppings']));
-            } else {
-                echo "Nessuno";
-            }
-            ?>
-        </p>
-
-        <p><strong>Salse:</strong>
-            <?php
-            if (!empty($datiOrdine['salse'])) {
-                echo htmlspecialchars(implode(', ', $datiOrdine['salse']));
-            } else {
-                echo "Nessuna";
-            }
-            ?>
-        </p>
-
-        <p><strong>Bevanda:</strong> <?= htmlspecialchars($datiOrdine['bevanda']) ?></p>
+        <tr>
+            <th colspan="2">Scelte Hamburger</th>
+        </tr>
+        <tr>
+            <td>Pane</td>
+            <td><?= htmlspecialchars($datiOrdine['pane']) ?></td>
+        </tr>
+        <tr>
+            <td>Carne</td>
+            <td><?= htmlspecialchars($datiOrdine['carne']) ?></td>
+        </tr>
+        <tr>
+            <td>Toppings</td>
+            <td><?= !empty($datiOrdine['toppings']) ? htmlspecialchars(implode(', ', $datiOrdine['toppings'])) : "Nessuno" ?></td>
+        </tr>
+        <tr>
+            <td>Salse</td>
+            <td><?= !empty($datiOrdine['salse']) ? htmlspecialchars(implode(', ', $datiOrdine['salse'])) : "Nessuna" ?></td>
+        </tr>
+        <tr>
+            <td>Bevanda</td>
+            <td><?= htmlspecialchars($datiOrdine['bevanda']) ?></td>
+        </tr>
 
         <?php if ($bonusMessaggio): ?>
-            <p style="color:green;"><strong>Bonus Fidelity:</strong> <?= $bonusMessaggio ?></p>
+        <tr>
+            <td>Bonus Fidelity</td>
+            <td class="bonus"><?= $bonusMessaggio ?></td>
+        </tr>
         <?php endif; ?>
 
-        <h2>Totale</h2>
-        <p><strong>Prezzo da pagare:</strong> <?= number_format($totale, 2, '.', '') ?> €</p>
-    </div>
+        <tr>
+            <th>Totale Finale</th>
+            <td class="price">€<?= number_format($totale, 2, '.', '') ?></td>
+        </tr>
+
+        <tr>
+            <th>Data Ordine</th>
+            <td><?= date("d/m/Y H:i:s") ?></td>
+        </tr>
+        <tr>
+            <th>Codice Fidelity</th>
+            <td><?= htmlspecialchars($codice ?: "Nessuno") ?></td>
+        </tr>
+    </table>
 
     <footer>
-        Non sporcate
+        Grazie per aver ordinato da BurgerCraft! 🍔<br>
+        Ci vediamo presto!
     </footer>
 </body>
 </html>
