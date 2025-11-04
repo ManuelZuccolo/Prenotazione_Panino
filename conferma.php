@@ -138,7 +138,7 @@ if ($codice === "INEEDPOWER") {
 
     <footer>
         Grazie per aver ordinato da BurgerCraft! 🍔<br>
-        Ci vediamo presto!
+        Cercate di non sporcare!
     </footer>
 </body>
 </html>
