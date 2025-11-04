@@ -1,58 +1,81 @@
 <?php
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $dati = json_decode($_POST['datiOrdine'], true);
-    $totale = $_POST['totaleFinale'];
-    $codice = $_POST['codice'] ?? 'Nessuno';
-
-    // Salvataggio su file (scontrino)
-    $file = fopen("scontrino.txt", "a");
-    fwrite($file, "---- NUOVO ORDINE ----\n");
-    fwrite($file, "Nome: {$dati['nome']}\n");
-    fwrite($file, "Data prenotazione: {$dati['dataPrenotazione']}\n");
-    fwrite($file, "Pane: {$dati['pane']}\n");
-    fwrite($file, "Carne: {$dati['carne']}\n");
-    fwrite($file, "Toppings: " . implode(", ", $dati['toppings'] ?? []) . "\n");
-    fwrite($file, "Salse: " . implode(", ", $dati['salse'] ?? []) . "\n");
-    fwrite($file, "Bevanda: {$dati['bevanda']}\n");
-    fwrite($file, "Codice Fidelity: $codice\n");
-    fwrite($file, "Totale finale: €$totale\n");
-    fwrite($file, "Data ordine: " . date("d/m/Y H:i:s") . "\n\n");
-    fclose($file);
-} else {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['datiOrdine'])) {
     header("Location: index.html");
     exit;
 }
+
+// Recupera dati ordine
+$datiJson = $_POST['datiOrdine'];
+$datiOrdine = json_decode($datiJson, true);
+
+// Totale
+$totale = isset($_POST['totaleFinale']) ? floatval(str_replace(',', '.', $_POST['totaleFinale'])) : 0.00;
+
+// Codice Fidelity
+$codice = isset($_POST['codice']) ? strtoupper(trim($_POST['codice'])) : '';
+$bonusMessaggio = '';
+$bonusOggetto = '';
+
+if ($codice === "INEEDPOWER") {
+    $bonusMessaggio = "Hai ricevuto una Monster in omaggio! ⚡";
+    $bonusOggetto = "Monster";
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Conferma Ordine 🍔</title>
+    <title>Conferma Ordine - BurgerCraft 🍔</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>✅ Ordine Confermato!</h1>
 
-    <table border="1" style="margin:auto; border-collapse:collapse;">
-        <tr><th>Nome</th><td><?= htmlspecialchars($dati['nome']) ?></td></tr>
-        <tr><th>Data Prenotazione</th><td><?= htmlspecialchars($dati['dataPrenotazione']) ?></td></tr>
-        <tr><th>Pane</th><td><?= htmlspecialchars($dati['pane']) ?></td></tr>
-        <tr><th>Carne</th><td><?= htmlspecialchars($dati['carne']) ?></td></tr>
-        <tr><th>Toppings</th><td><?= htmlspecialchars(implode(", ", $dati['toppings'] ?? [])) ?></td></tr>
-        <tr><th>Salse</th><td><?= htmlspecialchars(implode(", ", $dati['salse'] ?? [])) ?></td></tr>
-        <tr><th>Bevanda</th><td><?= htmlspecialchars($dati['bevanda']) ?></td></tr>
-        <tr><th>Codice Fidelity</th><td><?= htmlspecialchars($codice) ?></td></tr>
-        <tr><th>Totale</th><td><strong>€<?= number_format($totale, 2) ?></strong></td></tr>
-    </table>
+    <div class="ordine-box">
+        <h2>Dati Cliente</h2>
+        <p><strong>Nome:</strong> <?= htmlspecialchars($datiOrdine['nome']) ?></p>
+        <p><strong>Data e Ora prenotazione:</strong> <?= htmlspecialchars($datiOrdine['dataPrenotazione']) ?></p>
 
-    <p style="text-align:center; margin-top:20px;">
-        Il tuo ordine è stato registrato con successo! 🍟<br>
-        Data ordine: <?= date("d/m/Y H:i:s") ?>
-    </p>
+        <h2>Scelte Hamburger</h2>
+        <p><strong>Pane:</strong> <?= htmlspecialchars($datiOrdine['pane']) ?></p>
+        <p><strong>Carne:</strong> <?= htmlspecialchars($datiOrdine['carne']) ?></p>
 
-    <footer>Creato da Manuz - BurgerCraft 🍔</footer>
+        <p><strong>Toppings:</strong>
+            <?php
+            if (!empty($datiOrdine['toppings'])) {
+                echo htmlspecialchars(implode(', ', $datiOrdine['toppings']));
+            } else {
+                echo "Nessuno";
+            }
+            ?>
+        </p>
+
+        <p><strong>Salse:</strong>
+            <?php
+            if (!empty($datiOrdine['salse'])) {
+                echo htmlspecialchars(implode(', ', $datiOrdine['salse']));
+            } else {
+                echo "Nessuna";
+            }
+            ?>
+        </p>
+
+        <p><strong>Bevanda:</strong> <?= htmlspecialchars($datiOrdine['bevanda']) ?></p>
+
+        <?php if ($bonusMessaggio): ?>
+            <p style="color:green;"><strong>Bonus Fidelity:</strong> <?= $bonusMessaggio ?></p>
+        <?php endif; ?>
+
+        <h2>Totale</h2>
+        <p><strong>Prezzo da pagare:</strong> <?= number_format($totale, 2, '.', '') ?> €</p>
+    </div>
+
+    <footer>
+        Non sporcate
+    </footer>
 </body>
 </html>
