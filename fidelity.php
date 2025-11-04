@@ -1,5 +1,5 @@
 <?php
-session_star()
+session_star();
 // Recupera i dati inviati da index.html
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datiOrdine = $_POST; // contiene pane, carne, toppings, salse, bevanda e totale
