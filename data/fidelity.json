@@ -1,6 +1,4 @@
 {
-    "BURGER20": {"tipo": "sconto_percentuale", "sconto": 20},
-    "FREEBURGER": {"tipo": "panino_gratis"},
-    "INEEDPOWER": {"tipo": "bevanda_bonus", "oggetto": "Monster Bianca"},
-    "PULIZIA": {"tipo": "penalità"}
+    "INEEDPOWER": {"tipo":"bevanda_bonus"},
+    "20OFF": {"tipo":"sconto_20"}
 }

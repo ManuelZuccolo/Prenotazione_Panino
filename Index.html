@@ -135,5 +135,71 @@
         form.addEventListener('change', calcolaPrezzo);
         window.addEventListener('DOMContentLoaded', calcolaPrezzo);
     </script>
+    <script>
+        // Funzioni cookie
+        function setCookie(name, value, days) {
+            let d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(let i=0;i<ca.length;i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length,c.length));
+            }
+            return null;
+        }
+
+        // Funzione per salvare preferenze
+        function salvaPreferenze() {
+            const formData = new FormData(form);
+            const obj = {};
+            formData.forEach((value, key) => {
+                if (obj[key]) {
+                    if (Array.isArray(obj[key])) obj[key].push(value);
+                    else obj[key] = [obj[key], value];
+                } else obj[key] = value;
+            });
+            setCookie('preferenzeBurger', JSON.stringify(obj), 7); // salva 7 giorni
+        }
+
+        // Carica preferenze dai cookie
+        function caricaPreferenze() {
+            const cookie = getCookie('preferenzeBurger');
+            if (!cookie) return;
+            const obj = JSON.parse(cookie);
+
+            for (const key in obj) {
+                const value = obj[key];
+                if (Array.isArray(value)) {
+                    value.forEach(v => {
+                        const el = form.querySelector(`[name="${key}[]"][value="${v}"]`);
+                        if (el) el.checked = true;
+                    });
+                } else {
+                    const elRadio = form.querySelector(`[name="${key}"][value="${value}"]`);
+                    if (elRadio) elRadio.checked = true;
+
+                    const elSelect = form.querySelector(`[name="${key}"]`);
+                    if (elSelect) elSelect.value = value;
+                }
+            }
+        }
+
+        form.addEventListener('change', () => {
+            calcolaPrezzo();
+            salvaPreferenze();
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            caricaPreferenze();
+            calcolaPrezzo();
+        });
+</script>
+
 </body>
 </html>

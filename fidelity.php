@@ -17,7 +17,7 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval(str_replace(',', '.', $d
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>BurgerCraft 🍔</title>
+    <title>BurgerCraft 🍔 - Codice Fidelity</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,8 +53,10 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval(str_replace(',', '.', $d
         const esitoDiv = document.getElementById('esito');
         const totaleSpan = document.getElementById('totale');
         const totaleHidden = document.getElementById('totaleFinale');
+
+        // Lista codici fidelity
         const codici = {
-            "INEEDPOWER": { tipo: "bevanda_bonus", oggetto: "Monster" }
+            "INEEDPOWER": { tipo: "bevanda_bonus", oggetto: "Monster", valore: 3 }
         };
 
         document.getElementById('codice').addEventListener('input', function() {
@@ -63,6 +65,15 @@ $totale = isset($datiOrdine['totaleFinale']) ? floatval(str_replace(',', '.', $d
                 const tipo = codici[codice].tipo;
                 if (tipo === "bevanda_bonus") {
                     esitoDiv.textContent = `Hai ricevuto una ${codici[codice].oggetto} in omaggio!`;
+                    // Aggiorna totale: se Monster non era selezionata, sottrai il prezzo
+                    let totale = parseFloat(totaleHidden.value);
+                    const bevandaSelezionata = JSON.parse(form.querySelector('input[name="datiOrdine"]').value).bevanda.toLowerCase();
+                    if (bevandaSelezionata === "nessuna") {
+                        totale -= codici[codice].valore;
+                        if (totale < 0) totale = 0;
+                        totaleSpan.textContent = totale.toFixed(2);
+                        totaleHidden.value = totale.toFixed(2);
+                    }
                 }
             } else {
                 esitoDiv.textContent = '';
