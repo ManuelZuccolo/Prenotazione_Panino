@@ -15,12 +15,18 @@ $totale = isset($_POST['totaleFinale']) ? floatval(str_replace(',', '.', $_POST[
 
 // Codice Fidelity
 $codice = isset($_POST['codice']) ? strtoupper(trim($_POST['codice'])) : '';
-$bonusMessaggio = '';
-$bonusOggetto = '';
 
+// Controllo bonus INEEDPOWER
 if ($codice === "INEEDPOWER") {
+    // Aggiungi Monster gratis alla bevanda (anche se già selezionata)
+    if ($datiOrdine['bevanda'] === 'nessuna') {
+        $datiOrdine['bevanda'] = "Monster (gratis)";
+    } else {
+        $datiOrdine['bevanda'] .= ", Monster (gratis)";
+    }
     $bonusMessaggio = "Hai ricevuto una Monster in omaggio! ⚡";
-    $bonusOggetto = "Monster";
+} else {
+    $bonusMessaggio = '';
 }
 ?>
 
